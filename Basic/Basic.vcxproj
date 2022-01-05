@@ -145,6 +145,7 @@
     <ClCompile Include="KMP.cpp" />
     <ClCompile Include="KrusKal.cpp" />
     <ClCompile Include="Prim.cpp" />
+    <ClCompile Include="PrimApplication.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,7 +26,7 @@ public:
 		matrix_[from - 1].insert( Edge(from - 1, to - 1, value) );
 		matrix_[to - 1].insert( Edge(to - 1, from - 1, value) );
 	}
-	long long minimum_spanning_tree() const {
+	long long MinimumSpaaningTree() const {
 		enum class STATUS {
 			UNSEEN, FRINGE, TREE
 		};
@@ -82,22 +82,22 @@ private:
 	Matrix matrix_;
 	size_t size_;
 };
-
-int main() {
-	std::cin.sync_with_stdio(false);
-	size_t size, count;
-	std::cin >> size >> count;
-	Prim prim(size);
-
-	size_t alpha, beta;
-	int gamma;
-
-
-	for (size_t j = 0; j < count; j++)
-	{
-		std::cin >> alpha >> beta >> gamma;
-		prim.Insert(alpha, beta, gamma);
-	}
-
-	std::cout << prim.minimum_spanning_tree() << '\n';
-}
+//
+//int main() {
+//	std::cin.sync_with_stdio(false);
+//	size_t size, count;
+//	std::cin >> size >> count;
+//	Prim prim(size);
+//
+//	size_t alpha, beta;
+//	int gamma;
+//
+//
+//	for (size_t j = 0; j < count; j++)
+//	{
+//		std::cin >> alpha >> beta >> gamma;
+//		prim.Insert(alpha, beta, gamma);
+//	}
+//
+//	std::cout << prim.MinimumSpaaningTree() << '\n';
+//}
