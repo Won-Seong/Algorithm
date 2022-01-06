@@ -244,32 +244,32 @@ private:
 	VertexList vertice_;//1 ~ n까지 Vertex가 저장되어 있는 배열
 	EdgeList edges_;//1 ~ n까지 각 Vertex와 연결되어 있는 Edge 정보가 저장되어 있는 배열
 };//인접 리스트 기반 그래프
-
-int main() {
-	std::cin.sync_with_stdio(false);
-	unsigned int n, m, q;
-	std::cin >> n >> m >> q;
-	AdjListGraph graph(n);//1 ~ n까지 Vertex를 갖는 그래프 생성
-
-	unsigned int left_vertex, right_vertex, cost;
-
-	for (unsigned int j = 0; j < m; j++) {
-		std::cin >> left_vertex >> right_vertex >> cost;
-		graph.InsertEdge(left_vertex, right_vertex, cost);
-	}
-
-	char instruction;//명령어를 담을 변수
-	unsigned int start;
-
-	for (unsigned int j = 0; j < q; j++) {
-		std::cin >> instruction >> start;
-		switch (instruction)
-		{
-		case 'P':
-			graph.PrimPrint(start);
-			break;
-		default:
-			break;
-		}
-	}
-}
+//
+//int main() {
+//	std::cin.sync_with_stdio(false);
+//	unsigned int n, m, q;
+//	std::cin >> n >> m >> q;
+//	AdjListGraph graph(n);//1 ~ n까지 Vertex를 갖는 그래프 생성
+//
+//	unsigned int left_vertex, right_vertex, cost;
+//
+//	for (unsigned int j = 0; j < m; j++) {
+//		std::cin >> left_vertex >> right_vertex >> cost;
+//		graph.InsertEdge(left_vertex, right_vertex, cost);
+//	}
+//
+//	char instruction;//명령어를 담을 변수
+//	unsigned int start;
+//
+//	for (unsigned int j = 0; j < q; j++) {
+//		std::cin >> instruction >> start;
+//		switch (instruction)
+//		{
+//		case 'P':
+//			graph.PrimPrint(start);
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//}

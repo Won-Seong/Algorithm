@@ -13,25 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Graph">
+      <UniqueIdentifier>{8d7bca4c-b573-414d-b704-15d9c6673e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Graph">
+      <UniqueIdentifier>{2d0f3e4c-9727-4dcc-b34e-fb0b416590f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\String">
+      <UniqueIdentifier>{809d3242-968c-4e87-b382-4547002d8d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\String">
+      <UniqueIdentifier>{f327219a-b1b2-420c-ad19-1c206819e127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Math">
+      <UniqueIdentifier>{6ad9c875-d420-4dfe-b9ba-446a9aa66283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Math">
+      <UniqueIdentifier>{fc73f9da-c4bb-496d-869f-0dea518cd1a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dijkstra.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Dijkstra.cpp">
+      <Filter>소스 파일\Graph</Filter>
     </ClCompile>
     <ClCompile Include="Floyd-Warshall.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="KMP.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="KrusKal.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Prim.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Graph</Filter>
     </ClCompile>
     <ClCompile Include="PrimApplication.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Graph</Filter>
     </ClCompile>
+    <ClCompile Include="Prim.cpp">
+      <Filter>소스 파일\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="KrusKal.cpp">
+      <Filter>소스 파일\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="KMP.cpp">
+      <Filter>소스 파일\String</Filter>
+    </ClCompile>
+    <ClCompile Include="BigInteger.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimeNumber.cpp">
+      <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Floyd-Warshall.h">
+      <Filter>헤더 파일\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Dijkstra.h">
+      <Filter>헤더 파일\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="KrusKal.h">
+      <Filter>헤더 파일\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Prim.h">
+      <Filter>헤더 파일\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="KMP.h">
+      <Filter>헤더 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimeNumber.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BigInteger.h">
+      <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -140,12 +140,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BigInteger.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Floyd-Warshall.cpp" />
     <ClCompile Include="KMP.cpp" />
     <ClCompile Include="KrusKal.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Prim.cpp" />
     <ClCompile Include="PrimApplication.cpp" />
+    <ClCompile Include="PrimeNumber.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BigInteger.h" />
+    <ClInclude Include="Dijkstra.h" />
+    <ClInclude Include="Floyd-Warshall.h" />
+    <ClInclude Include="KMP.h" />
+    <ClInclude Include="KrusKal.h" />
+    <ClInclude Include="Prim.h" />
+    <ClInclude Include="PrimeNumber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
