@@ -4,6 +4,7 @@
 
 class BigInteger : std::exception {
 
+public:
 
 
 public:
