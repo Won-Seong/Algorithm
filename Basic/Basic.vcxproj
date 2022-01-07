@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BigInteger.cpp" />
+    <ClCompile Include="Combination.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Floyd-Warshall.cpp" />
     <ClCompile Include="KMP.cpp" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigInteger.h" />
+    <ClInclude Include="Combination.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Floyd-Warshall.h" />
     <ClInclude Include="KMP.h" />

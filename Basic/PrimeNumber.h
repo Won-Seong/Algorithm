@@ -24,7 +24,8 @@ public://Const, Dest, getter and setter
 	PrimeNumber(const unsigned int& number) :number_(number) {
 		SieveOfEratosthenes();
 	};
-	void set_number(const unsigned int& number) { number_ = number; }
+	void Clear() { vector_.clear(); }
+	void set_number(const unsigned int& number) { number_ = number; Clear(); vector_.resize(number_); }
 	unsigned int get_number() const { return number_; }
 private:
 	PrimeVector vector_;
