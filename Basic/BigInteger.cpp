@@ -57,13 +57,24 @@ BigInteger BigInteger::operator+(const BigInteger& integer) const
 	return BigInteger(result);
 }
 
-BigInteger BigInteger::operator/(const unsigned int& integer) const
+void BigInteger::operator+=(const BigInteger& integer)
 {
-	BigInteger temp_integer{number_};
+	*this = *this + integer;
+}
 
+BigInteger BigInteger::operator/(const BigInteger& integer) const
+{
+	std::string result{ "" };
+	BigInteger str{ "" };
+	long temp_num{ 0 };
 
+	for (const auto& itr : number_) {
 
-	return temp_integer;
+		str.Append(itr);
+		if(str >= integer)
+
+	}
+
 }
 
 bool BigInteger::operator>(const unsigned int& integer) const
