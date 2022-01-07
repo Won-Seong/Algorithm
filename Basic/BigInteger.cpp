@@ -85,6 +85,25 @@ bool BigInteger::operator>(const BigInteger& integer) const
 	return false;
 }
 
+bool BigInteger::operator>=(const unsigned int& integer) const
+{
+	BigInteger big_int{ integer };
+	return operator>=(big_int);
+}
+
+bool BigInteger::operator>=(const BigInteger& integer) const
+{
+	if (Length() != integer.Length())
+		return Length() > integer.Length();
+	else {
+		for (size_t i = 0; i < Length(); i++)
+		{
+			if (number_[i] != integer.number_[i]) return number_[i] > integer.number_[i];
+		}
+	}
+	return true;
+}
+
 bool BigInteger::operator<(const unsigned int& integer) const
 {
 	BigInteger big_int{ integer };
@@ -102,4 +121,23 @@ bool BigInteger::operator<(const BigInteger& integer) const
 		}
 	}
 	return false;
+}
+
+bool BigInteger::operator<=(const unsigned int& integer) const
+{
+	BigInteger big_int{ integer };
+	return operator<=(big_int);
+}
+
+bool BigInteger::operator<=(const BigInteger& integer) const
+{
+	if (Length() != integer.Length())
+		return Length() < integer.Length();
+	else {
+		for (size_t i = 0; i < Length(); i++)
+		{
+			if (number_[i] != integer.number_[i]) return number_[i] < integer.number_[i];
+		}
+	}
+	return true;
 }

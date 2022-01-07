@@ -29,13 +29,13 @@ void Combination::PrintPascalTable() const
 	std::cout << "==================================================" << std::endl;
 }
 
-unsigned int Combination::N_Combination_M(const size_t& n, const size_t& m) const
+BigInteger Combination::N_Combination_M(const size_t& n, const size_t& m) const
 {
 	if (n < m) throw std::invalid_argument("M can't be bigger than N!");
 	return pascal_table_[n][m];
 }
 
-unsigned int Combination::PascalUility(const size_t& n,const size_t& m)
+BigInteger Combination::PascalUility(const size_t& n,const size_t& m)
 {
 	if (n == m || n == 0 || m == 0) return 1;
 	else if (pascal_table_[n][m] > 1) return pascal_table_[n][m];

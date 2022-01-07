@@ -10,7 +10,12 @@ public:
 	bool operator>(const BigInteger& integer) const;
 	bool operator<(const unsigned int& integer) const;
 	bool operator<(const BigInteger& integer) const;
+	bool operator>=(const unsigned int& integer) const;
+	bool operator>=(const BigInteger& integer) const;
+	bool operator<=(const unsigned int& integer) const;
+	bool operator<=(const BigInteger& integer) const;
 public:
+	long ToLong() const { return std::stol(number_); }//만약 long long으로 변환 가능할 경우
 	size_t Length() const { return number_.size(); };
 public://Const, Dest, setter and getter
 	BigInteger() : number_( std::string() ) {};
