@@ -71,10 +71,10 @@ BigInteger BigInteger::operator/(const BigInteger& integer) const
 	for (const auto& itr : number_) {
 
 		str.Append(itr);
-		if(str >= integer)
+		//if(str >= integer)
 
 	}
-
+	return str;
 }
 
 bool BigInteger::operator>(const unsigned int& integer) const

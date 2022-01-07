@@ -30,3 +30,6 @@ private:
 	Matrix pascal_table_;
 	size_t size_;//nCm에서 n
 };
+
+void CombinationSimple(const size_t& n, const size_t& m);//간단하게 조합 구하는 법
+void CombinationSimpleUtility(const size_t& n, const size_t& m, std::vector<int>& vector, int& top, size_t start);
