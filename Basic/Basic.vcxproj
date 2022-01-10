@@ -150,6 +150,7 @@
     <ClCompile Include="Prim.cpp" />
     <ClCompile Include="PrimApplication.cpp" />
     <ClCompile Include="PrimeNumber.cpp" />
+    <ClCompile Include="TopologicalOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigInteger.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="KrusKal.h" />
     <ClInclude Include="Prim.h" />
     <ClInclude Include="PrimeNumber.h" />
+    <ClInclude Include="TopologicalOrder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

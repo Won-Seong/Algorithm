@@ -63,6 +63,9 @@
     <ClCompile Include="Combination.cpp">
       <Filter>소스 파일\Math</Filter>
     </ClCompile>
+    <ClCompile Include="TopologicalOrder.cpp">
+      <Filter>소스 파일\Graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Floyd-Warshall.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Combination.h">
       <Filter>헤더 파일\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="TopologicalOrder.h">
+      <Filter>헤더 파일\Graph</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
