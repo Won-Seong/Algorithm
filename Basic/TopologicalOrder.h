@@ -10,16 +10,21 @@ class TopologicalOrder : public std::exception {
 public:
 	void Insert(const size_t& from, const size_t& to);
 	void TopologicalPrint() const;
+	IndexVector TopologicalReturn() const;
 public:
 	TopologicalOrder(const size_t& size) :size_(size) {
-		matrix_.resize(size_);
+		out_matrix_.resize(size_);
+		in_matrix_.resize(size_);
 		in_degree_vector_.resize(size_, 0);
 	}
+	Matrix get_out() const { return out_matrix_; }
+	Matrix get_in() const { return in_matrix_; }
 private:
 	IndexVector TopologicalUtility(const size_t& index) const;
 	IndexVector TopologicalUtility() const;
 private:
-	Matrix matrix_;//adj list
+	Matrix out_matrix_;//adj list
+	Matrix in_matrix_;//adj list
 	Vector in_degree_vector_;
 	size_t size_;
 };

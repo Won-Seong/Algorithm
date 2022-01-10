@@ -2,7 +2,8 @@
 
 void TopologicalOrder::Insert(const size_t& from, const size_t& to)
 {
-	matrix_[from].push_back(to);
+	out_matrix_[from].push_back(to);
+	in_matrix_[to].push_back(from);
 	in_degree_vector_[to]++;
 }
 
@@ -11,6 +12,11 @@ void TopologicalOrder::TopologicalPrint() const
 	for (const auto& itr : TopologicalUtility())
 		std::cout << itr + 1 << ' ';
 	std::cout << std::endl;
+}
+
+TopologicalOrder::IndexVector TopologicalOrder::TopologicalReturn() const
+{
+	return TopologicalUtility();
 }
 
 TopologicalOrder::IndexVector TopologicalOrder::TopologicalUtility(const size_t& index) const
@@ -23,7 +29,7 @@ TopologicalOrder::IndexVector TopologicalOrder::TopologicalUtility(const size_t&
 	
 	while (index_vector.size() < size_) {
 		while (!queue.empty()) {
-			for (const auto& itr : matrix_[queue.front()])
+			for (const auto& itr : out_matrix_[queue.front()])
 				if (temp_vector[itr] > 1) temp_vector[itr]--;
 				else if (temp_vector[itr] == 1) { temp_vector[itr]--; queue.push(itr); index_vector.push_back(itr); }
 			queue.pop();
@@ -47,7 +53,7 @@ TopologicalOrder::IndexVector TopologicalOrder::TopologicalUtility() const
 	while (index_vector.size() < size_) {
 		while (!queue.empty()) {
 			index_vector.push_back(queue.front());
-			for (const auto& itr : matrix_[queue.front()])
+			for (const auto& itr : out_matrix_[queue.front()])
 				if (temp_vector[itr] > 1) temp_vector[itr]--;
 				else if (temp_vector[itr] == 1) { temp_vector[itr]--; queue.push(itr);  }
 			queue.pop();
