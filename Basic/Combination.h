@@ -23,13 +23,12 @@ public://Const, Dest, getter and setter
 		for (auto& itr : pascal_table_) itr.resize(size_ + 1, 1);
 	}
 	size_t get_size() const { return size_; }
-	
 private:
-	BigInteger PascalUility(const size_t& n, const size_t& m);
+	BigInteger PascalUility(const size_t& n, const size_t& m);//이 재귀 함수를 사용하여 파스칼 테이블을 구한다
 private:
 	Matrix pascal_table_;
 	size_t size_;//nCm에서 n
 };
 
 void CombinationSimple(const size_t& n, const size_t& m);//간단하게 조합 구하는 법
-void CombinationSimpleUtility(const size_t& n, const size_t& m, std::vector<int>& vector, int& top, size_t start);
+void CombinationSimpleUtility(const size_t& n, const size_t& m, std::vector<int>& vector, int& top, size_t start);//Simple에서 Combination을 구할 때 이 재귀 함수 사용

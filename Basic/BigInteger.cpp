@@ -21,7 +21,7 @@ BigInteger BigInteger::operator+(const BigInteger& integer) const
 			flag = true;
 		}
 		r_iter_one++, r_iter_two++;
-	}
+	}//각자 뒤에서부터 시작하여 더해 나가다가
 
 	if (r_iter_one != number_.crend()) {
 		while (flag && r_iter_one != number_.crend()) {
@@ -52,8 +52,9 @@ BigInteger BigInteger::operator+(const BigInteger& integer) const
 		}
 		while (r_iter_two != integer.number_.crend())
 			result = r_iter_two.operator*() + result, r_iter_two++;
-	}
-		if (flag) result = "1" + result;
+	}//더 긴 쪽을 전의 결과에다 붙인다. 이 때, 올림이 있을 수 있으니 이를 검사.
+
+	if (flag) result = "1" + result;//결국 맨 처음 자릿수까지 올림이 발생했을 경우
 	return BigInteger(result);
 }
 

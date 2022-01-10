@@ -4,9 +4,9 @@
 
 class BigInteger : std::exception {
 public:
-	BigInteger operator+(const BigInteger& integer) const;
-	void operator+=(const BigInteger& integer);
-	BigInteger operator/(const BigInteger& integer) const;
+	BigInteger operator+(const BigInteger& integer) const;//두 BigInt를 더한다.
+	void operator+=(const BigInteger& integer);//BigInt를 자신에게 더한다.
+	BigInteger operator/(const BigInteger& integer) const;//아직 완성 전
 	bool operator>(const unsigned int& integer) const;
 	bool operator>(const BigInteger& integer) const;
 	bool operator<(const unsigned int& integer) const;
@@ -18,8 +18,8 @@ public:
 public:
 	long ToLong() const { return std::stol(number_); }//만약 long long으로 변환 가능할 경우
 	size_t Length() const { return number_.size(); };
-	void Append(std::string str) { number_ += str; }
-	void Append(char ch) { number_ += ch; }
+	void Append(std::string str) { number_ += str; }//뒤에 String을 붙인다.
+	void Append(char ch) { number_ += ch; }//뒤에 Char를 붙인다.
 public://Const, Dest, setter and getter
 	BigInteger() : number_( std::string() ) {};
 	BigInteger(std::string number) : number_(number) {};
