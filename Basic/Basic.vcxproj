@@ -142,25 +142,27 @@
   <ItemGroup>
     <ClCompile Include="BigInteger.cpp" />
     <ClCompile Include="Combination.cpp" />
-    <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Floyd-Warshall.cpp" />
     <ClCompile Include="KMP.cpp" />
     <ClCompile Include="KrusKal.cpp" />
+    <ClCompile Include="LCA.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prim.cpp" />
     <ClCompile Include="PrimApplication.cpp" />
     <ClCompile Include="PrimeNumber.cpp" />
+    <ClCompile Include="SSSP.cpp" />
     <ClCompile Include="TopologicalOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigInteger.h" />
     <ClInclude Include="Combination.h" />
-    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Floyd-Warshall.h" />
     <ClInclude Include="KMP.h" />
     <ClInclude Include="KrusKal.h" />
+    <ClInclude Include="LCA.h" />
     <ClInclude Include="Prim.h" />
     <ClInclude Include="PrimeNumber.h" />
+    <ClInclude Include="SSSP.h" />
     <ClInclude Include="TopologicalOrder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
