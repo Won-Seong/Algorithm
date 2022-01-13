@@ -1,6 +1,6 @@
 #include "SSSP.h"
 
-void SSSP::PrintReturnPair(const ReturnPair& pair) const
+void SSSP::PrintReturnPair(const ReturnPair& pair) 
 {
 	if (pair.first.empty()) {
 		std::cout << "Empty!" << std::endl;
@@ -10,10 +10,14 @@ void SSSP::PrintReturnPair(const ReturnPair& pair) const
 	std::cout << "Path : ";
 	for (const auto& itr : pair.first)
 		std::cout << itr.first << ' ';
-	std::cout << pair.first.back().second << '\n';
+	std::cout << std::endl;
+
+	for (const auto& itr : pair.second)
+		std::cout << itr << ' ';
+	std::cout << std::endl;
 }
 
-SSSP::ReturnPair SSSP::DijkstraWithList(const size_t& source, const size_t& to) const
+SSSP::ReturnPair SSSP::DijkstraWithList(const size_t& source) const
 {
 	PairVector pair_vector;//To store detail of path.
 	std::vector<STATUS> status(size_, STATUS::UNSEEN);
@@ -47,13 +51,7 @@ SSSP::ReturnPair SSSP::DijkstraWithList(const size_t& source, const size_t& to) 
 		temp_source = std::get<2>(set.begin().operator*());
 		memo[temp_source] = std::get<0>(set.begin().operator*());
 		status[temp_source] = STATUS::TREE;
-	} while (temp_source != to && !set.empty());
-
-	//for (int j = 0; j < size_; j++) {
-	//	if (j == source) std::cout << 0 << '\n';
-	//	else if (memo[j] == 0) std::cout << "INF" << '\n';
-	//	else std::cout << memo[j] << '\n';
-	//}//Sum of weights
+	} while (!set.empty());
 
 	PairVector pair_vector_two;//To store correct path
 	size_t last{ 0 };
@@ -69,7 +67,20 @@ SSSP::ReturnPair SSSP::DijkstraWithList(const size_t& source, const size_t& to) 
 	return std::make_pair(pair_vector_two, memo);
 }
 
-SSSP::ReturnPair SSSP::DijkstraWithMat(const size_t& source, const size_t& to) const
+SSSP::ReturnPair SSSP::DijkstraTo(const size_t& source)
+{
+	Matrix temp_matrix{ adj_matrix_ };
+
+	for (size_t i = 0; i < size_; i++)
+		for (size_t j = 0; j < size_; j++)
+			adj_matrix_[i][j] = temp_matrix[j][i];
+
+	ReturnPair pair{ DijkstraWithMat(source) };
+	adj_matrix_ = temp_matrix;
+	return std::move(pair);
+}
+
+SSSP::ReturnPair SSSP::DijkstraWithMat(const size_t& source) const
 {
 	PairVector pair_vector;//To store detail of path.
 	std::vector<STATUS> status(size_, STATUS::UNSEEN);
@@ -106,9 +117,9 @@ SSSP::ReturnPair SSSP::DijkstraWithMat(const size_t& source, const size_t& to) c
 		temp_source = std::get<2>(set.begin().operator*());
 		memo[temp_source] = std::get<0>(set.begin().operator*());
 		status[temp_source] = STATUS::TREE;
-	} while (temp_source != to && !set.empty());
+	} while ( !set.empty());
 
-	if (pair_vector.empty() || pair_vector.back().second != to)
+	if (pair_vector.empty())
 		return ReturnPair();
 
 	PairVector pair_vector_two;//To store correct path
@@ -126,94 +137,44 @@ SSSP::ReturnPair SSSP::DijkstraWithMat(const size_t& source, const size_t& to) c
 	return std::make_pair(pair_vector_two, memo);
 }
 
-std::vector<SSSP::PairVector> SSSP::DijkstraAllPath(const size_t& source, const size_t& to) const
+std::vector<std::priority_queue<long, std::vector<long>, std::less<long>>> SSSP::K_Dijkstra(const size_t& source,  unsigned int K)
 {
-	PairVector pair_vector;//To store detail of path.
-	std::vector<SSSP::PairVector> return_vector;
 	std::vector<STATUS> status(size_, STATUS::UNSEEN);
-	Set set;
-	Vector memo(size_, 0);//Memo distances to each vertex
-	size_t temp_source{ source };
-	int value{ 1<<18 };
-
-	status[source] = STATUS::TREE;
-
+	std::priority_queue<Tuple, std::vector<Tuple> , std::greater<Tuple>> set;
+	using PrioQ = std::priority_queue<long, std::vector<long> , std::less<long>>;
+	std::vector< PrioQ > memo(size_);//Memo distances to each vertex
+	memo[0].push(0);
+	status[0] = STATUS::FRINGE;
+	set.push(std::make_tuple(0, 0 ,0));
+	
 	do
 	{
-		for (const auto& itr : adj_list_[temp_source]) {
-			switch (status[itr.first])
-			{
-			case STATUS::UNSEEN:
-				set.insert(std::make_tuple(memo[temp_source] + itr.second, temp_source, itr.first));
-				status[itr.first] = STATUS::FRINGE;
-				break;
-			case STATUS::FRINGE:
-				set.insert(std::make_tuple(memo[temp_source] + itr.second, temp_source, itr.first));
-				break;
-			default:
-				break;
-			}
-		}
-		while (!set.empty() && status[std::get<2>(set.begin().operator*())] == STATUS::TREE)
-			set.erase(set.begin());
 		if (set.empty()) break;
+		Tuple temp{ set.top() };
+		set.pop();
 
-		if (std::get<2>(set.begin().operator*()) == to) {
-			value = std::get<0>(set.begin().operator*());
-			memo[std::get<1>(set.begin().operator*())] = std::get<0>(set.begin().operator*());
-			while (!set.empty() && std::get<0>(set.begin().operator*()) <= value && std::get<2>(set.begin().operator*()) == to) {
-				pair_vector.push_back(std::make_pair(std::get<1>(set.begin().operator*()), std::get<2>(set.begin().operator*())));
-				set.erase(set.begin());
+		for (size_t j = 0; j < size_; j++)
+		{
+			if (adj_matrix_[std::get<1>(temp)][j] > 0) {
+			
+				if (memo[j].size() < K) {
+					memo[j].push(adj_matrix_[std::get<1>(temp)][j] + std::get<0>(temp));
+					set.push(std::make_tuple(adj_matrix_[std::get<1>(temp)][j] + std::get<0>(temp) , j, j));
+				}
+				else {
+					if (memo[j].top() > adj_matrix_[std::get<1>(temp)][j] + std::get<0>(temp)) {
+						memo[j].pop();
+						memo[j].push(adj_matrix_[std::get<1>(temp)][j] + std::get<0>(temp));
+						set.push(std::make_tuple(adj_matrix_[std::get<1>(temp)][j] + std::get<0>(temp), j, j));
+					}
+				}
+				
 			}
-			break;
 		}
-		pair_vector.push_back(std::make_pair(std::get<1>(set.begin().operator*()), std::get<2>(set.begin().operator*())));
-		temp_source = std::get<2>(set.begin().operator*());
-		memo[temp_source] = std::get<0>(set.begin().operator*());
-		status[temp_source] = STATUS::TREE;
-	} while (temp_source != to && !set.empty());
 
-	//for (const auto& itr : pair_vector)
-	//	std::cout << itr.first << ' ' << itr.second << '\n';
+	} while (true);
 
-	while (!pair_vector.empty()) {
-		PairVector pair_vector_two;//To store correct path
-		size_t last{ 0 };
-		while (!pair_vector.empty() && pair_vector.back().second != to)
-			pair_vector.pop_back();
-		if (pair_vector.empty()) break;
-
-		PairVector::const_reverse_iterator r_iter{ pair_vector.crbegin() };
-
-		while (r_iter != pair_vector.crend()) {
-			pair_vector_two.push_back(r_iter.operator*());
-			last = pair_vector_two.back().first;
-			while (r_iter != pair_vector.crend() && r_iter.operator*().second != last)
-				r_iter++;
-		}
-		std::reverse(pair_vector_two.begin(), pair_vector_two.end());
-		return_vector.push_back(pair_vector_two);
-		pair_vector.pop_back();
-	}
-	
-
-	return return_vector;
-}
-
-SSSP::ReturnPair SSSP::K_Dijkstra_NoReplace(const size_t& source, const size_t& to, unsigned int K)
-{
-	Matrix temp_adj_matrix{ adj_matrix_ };
-
-	for (const auto& itr : DijkstraAllPath(source, to)) {
-		for (const auto& itr_2 : itr) {
-			adj_matrix_[itr_2.first][itr_2.second] = 0;
-		}
-	}
-	
-	ReturnPair pair = DijkstraWithMat(source, to);
-	adj_matrix_ = temp_adj_matrix;
-
-	return pair;
+	return memo;
 }
 
 SSSP::Vector SSSP::BellmanFord(const size_t& source) const
